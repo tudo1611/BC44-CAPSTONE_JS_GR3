@@ -17,12 +17,12 @@ function render(proArr) {
         <td>${pro.desc}</td>
         <td>${pro.type}</td>
         <td>
-        <button class="btn btn-success btn-add-to-cart" data-product="${pro.id}">Thêm vào giỏ hàng</button>
+        <button class="btn btn-success btn-add-to-cart" data-product="${pro.id}">Add phone to cart</button>
         </td>
         </tr>`;
     contentHTML = contentHTML + contentTr;
   }
-  document.querySelector("#tbodySanPham").innerHTML = contentHTML;
+  document.querySelector("#tbodyPrd").innerHTML = contentHTML;
 
   var addToCartButtons = document.querySelectorAll(".btn-add-to-cart");
   for (var i = 0; i < addToCartButtons.length; i++) {

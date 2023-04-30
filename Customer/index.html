@@ -29,13 +29,13 @@
     <nav>
       <div class="content-nav space-x-10">
         <ul>
-          <li><a href="#">Trang Chủ</a></li>
-          <li><a href="#">Sản Phẩm</a></li>
-          <li><a href="#">Liên Hệ</a></li>
-          <li><a href="#">Giới Thiệu</a></li>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">About</a></li>
         </ul>
         <form>
-          <input type="text" name="search" placeholder="Tìm kiếm sản phẩm..." />
+          <input type="text" name="search" placeholder="Search..." />
           <button type="submit">
             <i class="fa fa-search" aria-hidden="true"></i>
           </button>
@@ -44,25 +44,25 @@
       <!-- The Modal -->
       <button id="cart">
         <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-        Giỏ Hàng
+        Cart
       </button>
       <div id="myModal" class="modal">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Giỏ Hàng</h5>
+            <h5 class="modal-title">Cart</h5>
             <span class="close">&times;</span>
           </div>
           <div class="modal-body">
             <div id="cart-detail" class="cart-row">
-              <span class="cart-item cart-header cart-column">Sản Phẩm</span>
-              <span class="cart-price cart-header cart-column">Giá</span>
-              <span id="cart-count" class="cart-quantity cart-header cart-column">Số Lượng</span>
+              <span class="cart-item cart-header cart-column">Name</span>
+              <span class="cart-price cart-header cart-column">Price</span>
+              <span id="cart-count" class="cart-quantity cart-header cart-column">Quantity</span>
             </div>
             <div class="cart-items">
             </div>
             <div class="cart-total">
-              <strong class="cart-total-title">Tổng Cộng:</strong>
-              <span class="cart-total-price">4500$</span>
+              <strong class="cart-total-title">Total:</strong>
+              <span class="cart-total-price">0$</span>
             </div>
 
             <div class="modal-footer">
@@ -70,7 +70,7 @@
                 Đóng
               </button>
               <button type="button" class="btn btn-primary order">
-                Thanh Toán
+                Pay
               </button>
             </div>
           </div>
@@ -83,13 +83,11 @@
       <div class="input-group">
         <div class="input-group-prepend"></div>
         <select class="form-control" id="filter-select">
-          <option value="all">Chọn sản phẩm</option>
+          <option value="all">Product type</option>
           <option value="samsung">SamSung</option>
           <option value="iphone">Iphone</option>
         </select>
       </div>
-
-      <span class="sp-thongbao" id="tbSanPham"></span>
     </div>
     <div class="mx-auto">
       <table class="table">
@@ -107,7 +105,7 @@
             <th></th>
           </tr>
         </thead>
-        <tbody id="tbodySanPham"></tbody>
+        <tbody id="tbodyPrd"></tbody>
       </table>
     </div>
   </section>

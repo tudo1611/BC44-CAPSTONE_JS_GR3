@@ -40,6 +40,23 @@ function render(proArr) {
 // biến global chứa các sản phẩm có trong giỏ hàng
 const CART_PRODUCTS = [];
 
+//lấy json lên khi user load trang
+var dataJson = localStorage.getItem("DSSP_LOCAL");
+// //convert từ json thành array
+// if (dataJson != null) {
+//   var dataArr = JSON.parse(dataJson);
+//   for (var i = 0; i < dataArr.length; i++) {
+//     var item = dataArr[i];
+//     var pro = new Cart(
+//       item.product,
+//       item.price,
+//       item.quantity
+//     );
+//     CART_PRODUCTS.push(pro);
+//   }
+//   renderProductToCart(CART_PRODUCTS);
+// }
+
 function renderProductToCart(product) {
   // check if the product is already in the cart
   if (CART_PRODUCTS.includes(product.id)) {
@@ -51,6 +68,11 @@ function renderProductToCart(product) {
   } else {
     // add the product to the cart array
     CART_PRODUCTS.push(product.id);
+
+    //convert array dssv thành json
+    var dataJson = JSON.stringify(product);
+    //lưu JSON
+    localStorage.setItem("DSSP_LOCAL", dataJson);
 
     // Cột Img
     var cartColumn = document.createElement("div");
@@ -85,7 +107,7 @@ function renderProductToCart(product) {
     // Nút xóa
     var productDeleteButton = document.createElement("button");
     productDeleteButton.classList.add("btn", "btn-danger");
-    productDeleteButton.innerHTML = "Xóa";
+    productDeleteButton.innerHTML = "Delete";
 
     productQuantityColumn.appendChild(productQuantityInput);
     productQuantityColumn.appendChild(productDeleteButton);
@@ -157,66 +179,95 @@ function updatecart() {
   // Thay đổi text = total trong .cart-total-price. Chỉ có một .cart-total-price nên sử dụng [0].
 }
 
-// filter by type
-
-var products = [
-  {
-    id: "1",
-    name: "iphoneX",
-    price: 1000,
-    screen: "screen 68",
-    backCamera: "2 camera 12 MP",
-    frontCamera: "7 MP",
-    img: "https://cdn.tgdd.vn/Products/Images/42/114115/iphone-x-64gb-hh-600x600.jpg",
-    desc: "Thiết kế mang tính đột phá",
-    type: "iphone",
-  },
-  {
-    id: "2",
-    name: "Samsung Galaxy M51 ",
-    price: 3500,
-    screen: "screen 69",
-    backCamera: " Chính 64 MP & Phụ 12 MP, 5 MP, 5 MP",
-    frontCamera: " 32 MP",
-    img: "https://cdn.tgdd.vn/Products/Images/42/217536/samsung-galaxy-m51-trang-new-600x600-600x600.jpg",
-    desc: "Thiết kế đột phá, màn hình tuyệt đỉnh",
-    type: "samsung",
-  },
-  {
-    id: "3",
-    name: "Samsung Galaxy M22",
-    price: 45000,
-    screen: "screen 70",
-    backCamera: "Chính 12 MP & Phụ 64 MP, 12 MP",
-    frontCamera: " 32 MP",
-    img: "https://cdn.tgdd.vn/Products/Images/42/217536/samsung-galaxy-m51-trang-new-600x600-600x600.jpg",
-    desc: "Thiết kế mang tính đột phá",
-    type: "samsung",
-  },
-  {
-    id: "4",
-    name: "Iphone 11",
-    price: 1000,
-    screen: "screen 54",
-    backCamera: "Camera: Chính 12 MP & Phụ 64 MP, 12 MP",
-    frontCamera: "32 MP",
-    img: "https://cdn.tgdd.vn/Products/Images/42/200533/iphone-11-pro-max-green-600x600.jpg",
-    desc: "Thiết kế đột phá, màn hình tuyệt đỉnh",
-    type: "iphone",
-  },
-];
-
-function filterProducts(type) {
-  return products.filter((product) => product.type === type);
+// search
+async function getAllProduct() {
+  return await axios
+    .get("https://643ff4b93dee5b763e2ab2bb.mockapi.io/pro")
+    .then(function (res) {
+      return res.data;
+      console.log("res.data: ", res.data);
+    });
 }
-render(products);
-var filterSelect = document.getElementById("filter-select");
-filterSelect.onchange = function () {
-  var selectedType = filterSelect.value;
-  if (selectedType == "all") {
-    render(products);
-  } else {
-    var filteredProducts = filterProducts(selectedType);
-    render(filteredProducts);
-  }
-};
+
+async function search() {
+  searchName = document.getElementById("txtSearch").value;
+  console.log("searchName: ", searchName);
+  let prdList = await getAllProduct();
+  var newArr = prdList.filter(function (item) {
+    return item.name.toLowerCase().includes(searchName.toLowerCase());
+  });
+  render(newArr);
+}
+
+// var products = [
+//   {
+//     id: "1",
+//     name: "iphoneX",
+//     price: 1000,
+//     screen: "screen 68",
+//     backCamera: "2 camera 12 MP",
+//     frontCamera: "7 MP",
+//     img: "https://cdn.tgdd.vn/Products/Images/42/114115/iphone-x-64gb-hh-600x600.jpg",
+//     desc: "Thiết kế mang tính đột phá",
+//     type: "iphone",
+//   },
+//   {
+//     id: "2",
+//     name: "Samsung Galaxy M51 ",
+//     price: 3500,
+//     screen: "screen 69",
+//     backCamera: " Chính 64 MP & Phụ 12 MP, 5 MP, 5 MP",
+//     frontCamera: " 32 MP",
+//     img: "https://cdn.tgdd.vn/Products/Images/42/217536/samsung-galaxy-m51-trang-new-600x600-600x600.jpg",
+//     desc: "Thiết kế đột phá, màn hình tuyệt đỉnh",
+//     type: "samsung",
+//   },
+//   {
+//     id: "3",
+//     name: "Samsung Galaxy M22",
+//     price: 45000,
+//     screen: "screen 70",
+//     backCamera: "Chính 12 MP & Phụ 64 MP, 12 MP",
+//     frontCamera: " 32 MP",
+//     img: "https://cdn.tgdd.vn/Products/Images/42/217536/samsung-galaxy-m51-trang-new-600x600-600x600.jpg",
+//     desc: "Thiết kế mang tính đột phá",
+//     type: "samsung",
+//   },
+//   {
+//     id: "4",
+//     name: "Iphone 11",
+//     price: 1000,
+//     screen: "screen 54",
+//     backCamera: "Camera: Chính 12 MP & Phụ 64 MP, 12 MP",
+//     frontCamera: "32 MP",
+//     img: "https://cdn.tgdd.vn/Products/Images/42/200533/iphone-11-pro-max-green-600x600.jpg",
+//     desc: "Thiết kế đột phá, màn hình tuyệt đỉnh",
+//     type: "iphone",
+//   },
+// ];
+
+// function filterProducts(type) {
+//   return products.filter((product) => product.type === type);
+// }
+// render(products);
+// var filterSelect = document.getElementById("filter-select");
+// filterSelect.onchange = function () {
+//   var selectedType = filterSelect.value;
+//   if (selectedType == "all") {
+//     render(products);
+//   } else {
+//     var filteredProducts = filterProducts(selectedType);
+//     render(filteredProducts);
+//   }
+// };
+
+// var searchInput = document.querySelector(".search input");
+// searchInput.addEventListener("input", function (e) {
+//   let txtSearch = e.target.value.trim().toLowerCase();
+//   let listProductDOM = document.querySelectorAll(".product");
+//   listProductDOM.forEach((item) => {
+//     if (item.innerText.toLowerCase().includes(txtSearch)) {
+//       item.classList.remove("hide");
+//     } else item.classList.add("hide");
+//   });
+// });

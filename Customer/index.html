@@ -34,9 +34,9 @@
           <li><a href="#">Contact</a></li>
           <li><a href="#">About</a></li>
         </ul>
-        <form>
-          <input type="text" name="search" placeholder="Search..." />
-          <button type="submit">
+        <form class="search" >
+          <input type="text" id="txtSearch" name="" placeholder="Search..." />
+          <button type="submit" onclick="search()">
             <i class="fa fa-search" aria-hidden="true"></i>
           </button>
         </form>
@@ -54,7 +54,7 @@
           </div>
           <div class="modal-body">
             <div id="cart-detail" class="cart-row">
-              <span class="cart-item cart-header cart-column">Name</span>
+              <span class="cart-item cart-header cart-column">Product</span>
               <span class="cart-price cart-header cart-column">Price</span>
               <span id="cart-count" class="cart-quantity cart-header cart-column">Quantity</span>
             </div>
@@ -67,7 +67,7 @@
 
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary close-footer">
-                Đóng
+                Close
               </button>
               <button type="button" class="btn btn-primary order">
                 Pay
@@ -78,10 +78,12 @@
     </nav>
   </header>
 
+
   <section>
     <div class="form-group w-25 m-3">
       <div class="input-group">
         <div class="input-group-prepend"></div>
+
         <select class="form-control" id="filter-select">
           <option value="all">Product type</option>
           <option value="samsung">SamSung</option>
@@ -105,7 +107,19 @@
             <th></th>
           </tr>
         </thead>
-        <tbody id="tbodyPrd"></tbody>
+        <tbody id="tbodyPrd" class="products">
+          <!-- <div class="product">
+            <div class="id">1</div>
+            <div class="name">Iphone X</div>
+            <div class="price">1000$</div>
+            <div class="screen">68</div>
+            <div class="backCamera">2 camera 12MP</div>
+            <div class="frontCamera">7MP</div>
+            <img src="" alt="">
+            <div class="desc">Thiết kế mang tính đột phá</div>
+            <div class="type">Iphone</div>
+          </div> -->
+        </tbody>
       </table>
     </div>
   </section>

@@ -9,3 +9,9 @@ function Product(_id, _name, _price, _screen, _backCamera, _frontCamera, _img, _
     this.desc = _desc;
     this.type = _type;
 }
+
+// function CartPrd(_product, _price, _quantity) {
+//     this.product = _product;
+//     this.price = _price;
+//     this.quantity = _quantity;
+// }

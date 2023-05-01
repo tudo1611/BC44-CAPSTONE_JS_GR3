@@ -28,15 +28,19 @@ window.onclick = function (event) {
 
 // lấy data từ server và render
 function fetchList() {
+  batLoading();
+
   axios({
     url: "https://643ff4b93dee5b763e2ab2bb.mockapi.io/pro",
     method: "GET",
   })
     .then(function (res) {
+      tatLoading();
       console.log(res.data);
       render(res.data);
     })
     .catch(function (err) {
+      tatLoading();
       console.log("err: ", err);
     });
 }

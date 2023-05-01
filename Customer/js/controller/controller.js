@@ -121,10 +121,13 @@ function renderProductToCart(product) {
     newCartRow.appendChild(productQuantityColumn);
 
     // add the new product row to the cart
+
     const modalCartItems = document.querySelector(
       "#myModal .modal-body > .cart-items"
     );
+
     modalCartItems.appendChild(newCartRow);
+
     updatecart();
   }
   // thay đổi số lượng sản phẩm
@@ -185,89 +188,25 @@ async function getAllProduct() {
     .get("https://643ff4b93dee5b763e2ab2bb.mockapi.io/pro")
     .then(function (res) {
       return res.data;
-      console.log("res.data: ", res.data);
     });
 }
 
 async function search() {
+  batLoading();
   searchName = document.getElementById("txtSearch").value;
   console.log("searchName: ", searchName);
   let prdList = await getAllProduct();
   var newArr = prdList.filter(function (item) {
     return item.name.toLowerCase().includes(searchName.toLowerCase());
   });
+  tatLoading();
   render(newArr);
 }
 
-// var products = [
-//   {
-//     id: "1",
-//     name: "iphoneX",
-//     price: 1000,
-//     screen: "screen 68",
-//     backCamera: "2 camera 12 MP",
-//     frontCamera: "7 MP",
-//     img: "https://cdn.tgdd.vn/Products/Images/42/114115/iphone-x-64gb-hh-600x600.jpg",
-//     desc: "Thiết kế mang tính đột phá",
-//     type: "iphone",
-//   },
-//   {
-//     id: "2",
-//     name: "Samsung Galaxy M51 ",
-//     price: 3500,
-//     screen: "screen 69",
-//     backCamera: " Chính 64 MP & Phụ 12 MP, 5 MP, 5 MP",
-//     frontCamera: " 32 MP",
-//     img: "https://cdn.tgdd.vn/Products/Images/42/217536/samsung-galaxy-m51-trang-new-600x600-600x600.jpg",
-//     desc: "Thiết kế đột phá, màn hình tuyệt đỉnh",
-//     type: "samsung",
-//   },
-//   {
-//     id: "3",
-//     name: "Samsung Galaxy M22",
-//     price: 45000,
-//     screen: "screen 70",
-//     backCamera: "Chính 12 MP & Phụ 64 MP, 12 MP",
-//     frontCamera: " 32 MP",
-//     img: "https://cdn.tgdd.vn/Products/Images/42/217536/samsung-galaxy-m51-trang-new-600x600-600x600.jpg",
-//     desc: "Thiết kế mang tính đột phá",
-//     type: "samsung",
-//   },
-//   {
-//     id: "4",
-//     name: "Iphone 11",
-//     price: 1000,
-//     screen: "screen 54",
-//     backCamera: "Camera: Chính 12 MP & Phụ 64 MP, 12 MP",
-//     frontCamera: "32 MP",
-//     img: "https://cdn.tgdd.vn/Products/Images/42/200533/iphone-11-pro-max-green-600x600.jpg",
-//     desc: "Thiết kế đột phá, màn hình tuyệt đỉnh",
-//     type: "iphone",
-//   },
-// ];
+function batLoading() {
+  document.getElementById("loading").style.display = "flex";
+}
 
-// function filterProducts(type) {
-//   return products.filter((product) => product.type === type);
-// }
-// render(products);
-// var filterSelect = document.getElementById("filter-select");
-// filterSelect.onchange = function () {
-//   var selectedType = filterSelect.value;
-//   if (selectedType == "all") {
-//     render(products);
-//   } else {
-//     var filteredProducts = filterProducts(selectedType);
-//     render(filteredProducts);
-//   }
-// };
-
-// var searchInput = document.querySelector(".search input");
-// searchInput.addEventListener("input", function (e) {
-//   let txtSearch = e.target.value.trim().toLowerCase();
-//   let listProductDOM = document.querySelectorAll(".product");
-//   listProductDOM.forEach((item) => {
-//     if (item.innerText.toLowerCase().includes(txtSearch)) {
-//       item.classList.remove("hide");
-//     } else item.classList.add("hide");
-//   });
-// });
+function tatLoading() {
+  document.getElementById("loading").style.display = "none";
+}

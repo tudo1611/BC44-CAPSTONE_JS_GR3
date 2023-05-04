@@ -1,9 +1,8 @@
 //variable
 $color-text: #636363;
 $color-hover: #f55f8d;
-$color-bg1: #f1df11;
 $color-bg2: #fff;
-$color-bg-cart: #c7b200;
+$color-bg-cart: green;
 $color-overlay: rgba(0, 0, 0, 0.4);
 $color-bg-input: #eee;
 
@@ -12,7 +11,7 @@ header {
     padding: 15px;
     width: 100%;
     display: flex;
-    background: $color-bg1;
+    background:linear-gradient(to right, #ffe000, #799f0c);
     .content-nav {
       display: flex;
       line-height: 2rem;
@@ -57,7 +56,7 @@ header {
       }
     }
   }
-  .hide{
+  .hide {
     display: none;
   }
 
@@ -72,9 +71,7 @@ header {
     input {
       width: 100%;
       font-weight: bold;
-          border: 1px solid black;
-
-      
+      border: 1px solid black;
     }
     i {
       color: #333;
@@ -158,7 +155,7 @@ header {
     }
   }
   #cart {
-    font-size: 15px;
+    font-size: 30px;
     color: $color-bg2;
     background: $color-bg-cart;
     border: 1px solid transparent;
@@ -174,8 +171,8 @@ header {
 }
 //footer
 footer {
+  background: linear-gradient(to right, #ffe000, #799f0c);
   .footer__copyright {
-    background-color: $color-bg1;
     padding: 10px 0;
     position: relative;
     transition: all 0.5s;

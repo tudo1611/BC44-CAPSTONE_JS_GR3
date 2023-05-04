@@ -2,7 +2,7 @@ header nav {
   padding: 15px;
   width: 100%;
   display: flex;
-  background: #f1df11;
+  background: linear-gradient(to right, #ffe000, #799f0c);
 }
 header nav .content-nav {
   display: flex;
@@ -125,7 +125,7 @@ header .modal .modal-content .modal-footer .btn {
 header #cart {
   font-size: 15px;
   color: #fff;
-  background: #c7b200;
+  background: green;
   border: 1px solid transparent;
   border-radius: 10px;
   outline: none;
@@ -136,9 +136,11 @@ header #cart {
 header #cart:hover {
   border-color: #fff;
 }
-
+footer {
+  background: linear-gradient(to right, #ffe000, #799f0c);
+}
 footer .footer__copyright {
-  background-color: #f1df11;
+  
   padding: 10px 0;
   position: relative;
   transition: all 0.5s;

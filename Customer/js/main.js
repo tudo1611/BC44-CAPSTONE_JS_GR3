@@ -16,7 +16,7 @@ close_footer.onclick = function () {
   modal.style.display = "none";
 };
 order.onclick = function () {
-  alert("Cảm ơn bạn đã thanh toán đơn hàng");
+  alert("Thank you for your order payment");
   clearCart();
   modal.style.display = "none";
 };

@@ -40,23 +40,6 @@ function render(proArr) {
 // biến global chứa các sản phẩm có trong giỏ hàng
 const CART_PRODUCTS = [];
 
-//lấy json lên khi user load trang
-var dataJson = localStorage.getItem("DSSP_LOCAL");
-// //convert từ json thành array
-// if (dataJson != null) {
-//   var dataArr = JSON.parse(dataJson);
-//   for (var i = 0; i < dataArr.length; i++) {
-//     var item = dataArr[i];
-//     var pro = new Cart(
-//       item.product,
-//       item.price,
-//       item.quantity
-//     );
-//     CART_PRODUCTS.push(pro);
-//   }
-//   renderProductToCart(CART_PRODUCTS);
-// }
-
 function renderProductToCart(product) {
   // check if the product is already in the cart
   if (CART_PRODUCTS.includes(product.id)) {
@@ -69,14 +52,10 @@ function renderProductToCart(product) {
     // add the product to the cart array
     CART_PRODUCTS.push(product.id);
 
-    //convert array dssv thành json
-    var dataJson = JSON.stringify(product);
-    //lưu JSON
-    localStorage.setItem("PRDLIST_LOCAL", dataJson);
 
     // Cột Img
     var cartColumn = document.createElement("div");
-    cartColumn.classList.add("cart-item", "cart-column");
+    cartColumn.classList.add("cart-item", "cart-column", "justify-center");
 
     var imgProduct = document.createElement("img");
     imgProduct.classList.add("cart-item-image");
@@ -92,12 +71,16 @@ function renderProductToCart(product) {
 
     // Cột giá
     var priceProduct = document.createElement("span");
-    priceProduct.classList.add("cart-price", "cart-column");
+    priceProduct.classList.add("cart-price", "cart-column", "justify-center");
     priceProduct.innerHTML = product.price + "$";
 
     // Cột số lượng
     var productQuantityColumn = document.createElement("div");
-    productQuantityColumn.classList.add("cart-quantity", "cart-column");
+    productQuantityColumn.classList.add(
+      "cart-quantity",
+      "cart-column",
+      "justify-center"
+    );
 
     var productQuantityInput = document.createElement("input");
     productQuantityInput.setAttribute("type", "number");

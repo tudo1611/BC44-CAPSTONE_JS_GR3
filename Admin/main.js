@@ -66,7 +66,7 @@ function delPrd(id) {
 }
 
 function createPrd() {
-  batLoading();
+  // batLoading();
   var dataPrd = getInfo();
   var isValid = checkEmpty("spanName", dataPrd.name);
   isValid = isValid & checkEmpty("spanPrice", dataPrd.price);
@@ -86,9 +86,9 @@ function createPrd() {
   prdService
     .create(dataPrd)
     .then(function (res) {
-      tatLoading();
       //gọi lại api lấy danh sách mới nhất từ server sau khi xóa thành công
       fetchPrdList();
+      
       resetForm();
       Toastify({
         text: "More successful products!!!",
@@ -97,11 +97,11 @@ function createPrd() {
           y: 10,
         },
       }).showToast();
-      tatLoading();
+      // tatLoading();
     })
     .catch(function (err) {
       console.log("err: ", err);
-      tatLoading();
+      // tatLoading();
     });
 }
 

@@ -72,7 +72,7 @@ function renderProductToCart(product) {
     //convert array dssv thành json
     var dataJson = JSON.stringify(product);
     //lưu JSON
-    localStorage.setItem("DSSP_LOCAL", dataJson);
+    localStorage.setItem("PRDLIST_LOCAL", dataJson);
 
     // Cột Img
     var cartColumn = document.createElement("div");

@@ -13,17 +13,17 @@ function renderPrdList(prdArr) {
         <img src="${pro.img}" class="img-thumbnail img-prd" width = "100"/>
         </td>
         <td>${pro.desc}</td>
+        <td>${pro.type}</td>
         <td>
-               <button onclick="delPrd(${pro.id})" class="btn btn-danger mb-3 px-3">Delete</button>
+              <button onclick="delPrd(${pro.id})" class="btn btn-danger mb-2 px-3" >Delete</button>
                <button 
                onclick="changePrd(${pro.id})"
-               class="btn btn-warning" data-toggle="modal"
-									data-target="#myModal">Change</button>
-            </td>
+               class="btn btn-secondary" >Change</button>
+        </td>
         </tr>`;
     contentHTML = contentHTML + contentTr;
   }
-  document.getElementById("tableDanhSach").innerHTML = contentHTML;
+  document.getElementById("tbodyPrd").innerHTML = contentHTML;
 }
 
 function getInfo() {
@@ -35,6 +35,7 @@ function getInfo() {
   var frontCamera = document.getElementById("frontCamera").value;
   var img = document.getElementById("img").value;
   var desc = document.getElementById("desc").value;
+  var type = document.getElementById("type").value;
   // lưu
   var pro = new Product(
     id,
@@ -44,7 +45,8 @@ function getInfo() {
     backCamera,
     frontCamera,
     img,
-    desc
+    desc,
+    type
   );
   return pro;
 }
@@ -58,6 +60,7 @@ function showInfo(pro) {
   document.getElementById("frontCamera").value = pro.frontCamera;
   document.getElementById("img").value = pro.img;
   document.getElementById("desc").value = pro.desc;
+  document.getElementById("type").value = pro.type;
 }
 
 function batLoading() {

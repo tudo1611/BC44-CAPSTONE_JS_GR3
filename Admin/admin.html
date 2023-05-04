@@ -1,0 +1,212 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- bootstrap 4.2  -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
+    <!-- toast css  -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <style>
+      #loading {
+        background: #000;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="loading">
+      <div class="spinner-border text-warning" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6 mx-auto">
+          <h3 class="display-4 text-center">Phone Management</h3>
+          <form id="formPrd">
+            <div class="row">
+              <div class="col-4 form-group">
+                <label for="">ID </label>
+                <input type="text" class="form-control" id="id" disabled />
+                <span id="spanID" class="text-danger"></span>
+              </div>
+              <div class="col-4 form-group">
+                <label for="">Name </label>
+                <input type="text" class="form-control" id="name" />
+                <span id="spanName" class="text-danger"></span>
+              </div>
+              <div class="col-4 form-group">
+                <label for="">Price </label>
+                <input type="number" class="form-control" id="price" />
+                <span id="spanPrice" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4 form-group">
+                <label for="">Screen </label>
+                <input type="text" class="form-control" id="screen" />
+                <span id="spanScreen" class="text-danger"></span>
+              </div>
+              <div class="col-4 form-group">
+                <label for="">Back Camera </label>
+                <input type="text" class="form-control" id="backCamera" />
+                <span id="spanBCamera" class="text-danger"></span>
+              </div>
+              <div class="col-4 form-group">
+                <label for="">Front Camera </label>
+                <input type="text" class="form-control" id="frontCamera" />
+                <span id="spanFCamera" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4 form-group">
+                <label for="">Img </label>
+                <input type="text" class="form-control" id="img" />
+                <span id="spanImg" class="text-danger"></span>
+              </div>
+              <div class="col-4 form-group">
+                <label for="">Desc </label>
+                <input type="text" class="form-control" id="desc" />
+                <span id="spanDesc" class="text-danger"></span>
+              </div>
+              <div class="col-4 form-group">
+                <label for="">Type </label>
+                <input type="text" class="form-control" id="type" />
+                <span id="spanType" class="text-danger"></span>
+              </div>
+            </div>
+
+            <div class="form-group text-center">
+              <button
+                type="button"
+                onclick="createPrd()"
+                class="btn btn-success"
+              >
+                Add Phone
+              </button>
+
+              <button type="button" onclick="resetForm()" class="btn btn-dark">
+                Reset
+              </button>
+              <button type="button" onclick="updatePrd()" class="btn btn-info">
+                Update
+              </button>
+            </div>
+          </form>
+          <div class="row">
+            <div class="col-9 form-group">
+              <input
+                placeholder="Search Phone"
+                type="text"
+                class="form-control"
+                id="txtSearch"
+              />
+            </div>
+            <div class="col-3 form-group">
+              <button type="button" onclick="search()" class="btn btn-primary">Search</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-8 mx-auto">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Screen</th>
+                <th>Back Camera</th>
+                <th>Front Camera</th>
+                <th>Img Camera</th>
+                <th>Desc Camera</th>
+                <th>Type</th>
+                <th class="flex">
+                  <button class="btn btn-primary mr-2" onclick="ascending()">
+                    <i class="fa fa-sort-up"></i>
+                  </button>
+                  <button class="btn btn-primary" onclick="decrease()">
+                    <i class="fa fa-sort-down"></i>
+                  </button>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="tbodyPrd"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"
+      ></script>
+      <!-- toast js  -->
+      <script
+        type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/toastify-js"
+      ></script>
+      <!-- axios  -->
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js"
+        integrity="sha512-nnNHpffPSgINrsR8ZAIgFUIMexORL5tPwsfktOTxVYSv+AUAILuFYWES8IHl+hhIhpFGlKvWFiz9ZEusrPcSBQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+      ></script>
+
+      <!--w3e my js -->
+      <!-- validate -->
+      <script src="./controller/validate.js"></script>
+      <!-- model -->
+      <script src="./model/model.js"></script>
+      <!-- controller -->
+      <script src="./controller/controller.js"></script>
+      <!-- service  -->
+      <script src="./controller/service.js"></script>
+      <!-- main js -->
+      <script src="./main.js"></script>
+    </div>
+  </body>
+</html>

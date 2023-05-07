@@ -13,8 +13,8 @@ if (dataJson != null) {
       item.name,
       item.price,
       item.screen,
-      item.bCamera,
-      item.fCamera,
+      item.backCamera,
+      item.frontCamera,
       item.img,
       item.desc,
       item.type

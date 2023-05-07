@@ -1,3 +1,5 @@
+
+
 function render(proArr) {
   var contentHTML = "";
 
@@ -51,8 +53,6 @@ function renderProductToCart(product) {
   } else {
     // add the product to the cart array
     CART_PRODUCTS.push(product.id);
-
-
     // Cột Img
     var cartColumn = document.createElement("div");
     cartColumn.classList.add("cart-item", "cart-column", "justify-center");
@@ -126,6 +126,8 @@ function renderProductToCart(product) {
     });
   }
   clearProduct();
+
+  localStorage.setItem("cart", JSON.stringify(CART_PRODUCTS));
 }
 // Clear product
 function clearProduct() {

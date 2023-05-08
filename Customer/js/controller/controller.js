@@ -195,3 +195,10 @@ function batLoading() {
 function tatLoading() {
   document.getElementById("loading").style.display = "none";
 }
+
+
+function renderCartJSON (cartPrd) {
+  var cartPrd = JSON.parse(localStorage.getItem("cart"));
+  return cartPrd;
+}
+renderCartJSON();
